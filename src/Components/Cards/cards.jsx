@@ -18,7 +18,7 @@ const Cards=(props)=>{
                 </Typography> 
                 <Typography variant="h5"><CountUp end={confirmed.value} duration={2} seperator=","/></Typography>
                 <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>    
-                <Typography variant="body2" color>Number of active cases of COVID-19</Typography>
+                <Typography variant="body2">Number of active cases of COVID-19</Typography>
         </CardContent>    
       </Grid>
       <Grid item component={Card} xs={12} md={3} className={classnames(styles.card,styles.recovered)}>
