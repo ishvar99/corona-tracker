@@ -4,7 +4,7 @@
 
 .card{
     margin:0 2% !important;
-    height: 250px;
+    /* height: 250px; */
 }
 .infected{
     border-bottom: 10px solid rgba(0, 0, 255,0.5);
