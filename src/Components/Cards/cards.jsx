@@ -9,19 +9,19 @@ const Cards=(props)=>{
     return 'Loading....'
   }
   return (
-         <div className="styles.container">
+         <div className={styles.container}>
     <Grid container spacing={2} justify="center">
-      <Grid item component={Card} xs={12} className={classnames(styles.card,styles.infected)}>
+      <Grid item component={Card} xs={12} md={3} className={classnames(styles.card,styles.infected)}>
         <CardContent>
             <Typography color="textSecondary" gutterBottom>
                 Infected
                 </Typography> 
                 <Typography variant="h5"><CountUp end={confirmed.value} duration={2} seperator=","/></Typography>
                 <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>    
-                <Typography variant="body2">Number of active cases of COVID-19</Typography>
+                <Typography variant="body2" color>Number of active cases of COVID-19</Typography>
         </CardContent>    
       </Grid>
-      <Grid item component={Card} xs={12} className={classnames(styles.card,styles.infected)}>
+      <Grid item component={Card} xs={12} md={3} className={classnames(styles.card,styles.recovered)}>
       <CardContent>
             <Typography color="textSecondary" gutterBottom>
                 Recovered
@@ -31,7 +31,7 @@ const Cards=(props)=>{
                 <Typography variant="body2">Number of recovered cases of COVID-19</Typography>
         </CardContent>    
       </Grid>
-      <Grid item component={Card} xs={12} className={classnames(styles.card,styles.infected)}>
+      <Grid item component={Card} xs={12} md={3} className={classnames(styles.card,styles.deaths)}>
       <CardContent>
             <Typography color="textSecondary" gutterBottom>
                 Deaths

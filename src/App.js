@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.module.css';
 import axios from 'axios';
 import {Cards,Charts,CountryPicker} from './Components/index'; 
-
+import styles from './App.module.css';
 class App extends Component {
   state={
     data:{}
@@ -23,7 +23,7 @@ render()
   {
     const {data}=this.state;
   return (
-    <div>
+    <div className={styles.container}>
       <CountryPicker/>
       <Cards fetchedData={data}/>
       <Charts/>
