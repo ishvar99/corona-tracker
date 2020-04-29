@@ -6,11 +6,11 @@ import styles from './App.module.css';
 class App extends Component {
   state={
     data:{},
-    country:''
+    country:null
   }
   fetchData=async ()=>{
     let url='https://covid19.mathdro.id/api';
-    if(this.state.country!==''){
+    if(this.state.country){
       url=`${url}/countries/${this.state.country}`
     }
     try {
@@ -32,8 +32,10 @@ class App extends Component {
     
   }
   async componentDidUpdate(_,prevState){
+    
     if(prevState.country!==this.state.country)
     {
+      console.log('called')
     const fetchedData= await(this.fetchData())
     if(fetchedData)
       this.setState({data:fetchedData});
@@ -42,21 +44,22 @@ class App extends Component {
     }
   }
  onCountryChangeHandler=(country)=>{
+   console.log('Hi')
    if(country==='global'){
-     this.setState({country:''})
+     this.setState({country:null})
      return;
    }
     this.setState({country:country})
 }
 render()
   {
-    const {data}=this.state;
+    const {data,country}=this.state;
   return (
     <div className={styles.container}>
      
       <Cards fetchedData={data}/>
       <CountryPicker onCountryChangeHandler={this.onCountryChangeHandler}/>
-      <Charts country={this.state.country}/>
+      <Charts country={country} data={data}/>
     </div>
   );
 }
