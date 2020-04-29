@@ -37,6 +37,7 @@ const Charts=({data:{confirmed,recovered,deaths},country})=>{
         ):null
     }
     const BarChart=()=>{
+        console.log('Bar Chart rendered')
         return confirmed?(<Bar data={{
             labels:['infected','recovered','Deaths'],
             datasets:[{

@@ -8,10 +8,10 @@ class App extends Component {
     data:{},
     country:null
   }
-  fetchData=async ()=>{
+  fetchData=async (country)=>{
     let url='https://covid19.mathdro.id/api';
-    if(this.state.country){
-      url=`${url}/countries/${this.state.country}`
+    if(country){
+      url=`${url}/countries/${country}`
     }
     try {
       const response=await(axios.get(`${url}`));
@@ -31,28 +31,20 @@ class App extends Component {
         this.setState({data:{error:'Failed to fetch data'}})
     
   }
-  async componentDidUpdate(_,prevState){
-    
-    if(prevState.country!==this.state.country)
-    {
-      console.log('called')
-    const fetchedData= await(this.fetchData())
-    if(fetchedData)
-      this.setState({data:fetchedData});
-    else
-      this.setState({data:{error:'Failed to fetch data'}})
-    }
-  }
- onCountryChangeHandler=(country)=>{
-   console.log('Hi')
+  onCountryChangeHandler= async (country)=>{
+   console.log('entered')
    if(country==='global'){
-     this.setState({country:null})
+    const fetchedData= await(this.fetchData())
+     this.setState({data:fetchedData,country:null})
      return;
    }
-    this.setState({country:country})
+   const fetchedData= await(this.fetchData(country))
+   this.setState({data:fetchedData,country:country})
 }
 render()
   {
+    console.log('render');
+    console.log(this.state);
     const {data,country}=this.state;
   return (
     <div className={styles.container}>
