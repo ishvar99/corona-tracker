@@ -7,7 +7,6 @@ const Charts=()=>{
     useEffect(()=>{
         axios.get('https://covid19.mathdro.id/api/daily')
         .then((response)=>{
-            console.log(response);
         const modifiedData= response.data.map((res)=>{
                return {confirmed:res.confirmed.total,deaths:res.deaths.total,reportDate:res.reportDate}
             });
@@ -17,7 +16,6 @@ const Charts=()=>{
         }).catch((err)=>console.log(err))
     },[])
     const LineChart=()=>{
-        console.log(dailyData.map(({reportDate})=>reportDate));
         return dailyData.length>0?(
            
             <Line data={{
