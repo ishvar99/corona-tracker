@@ -1,50 +1,34 @@
 import React, { Component} from 'react';
 import './App.module.css';
-import axios from 'axios';
+import fetchData from './Api/fetchData'
 import {Cards,Charts,CountryPicker} from './Components/index'; 
 import styles from './App.module.css';
 class App extends Component {
   state={
     data:{},
-    country:null
+    country:''
   }
-  fetchData=async (country)=>{
-    let url='https://covid19.mathdro.id/api';
-    if(country){
-      url=`${url}/countries/${country}`
-    }
-    try {
-      const response=await(axios.get(`${url}`));
-      const {data:{confirmed,recovered,deaths,lastUpdate}}=response;
-       const modifiedData={confirmed,recovered,deaths,lastUpdate}
-      return modifiedData;
-   
-    } catch (error) {
-      return null;
-    } 
-  }
+
   async componentDidMount(){
-      const fetchedData= await(this.fetchData())
+    console.log('called');
+      const fetchedData= await fetchData();
       if(fetchedData)
         this.setState({data:fetchedData});
       else
         this.setState({data:{error:'Failed to fetch data'}})
-    
   }
   onCountryChangeHandler= async (country)=>{
-   console.log('entered')
    if(country==='global'){
-    const fetchedData= await(this.fetchData())
-     this.setState({data:fetchedData,country:null})
+    const fetchedData= await fetchData()
+     this.setState({data:fetchedData,country:''})
      return;
    }
-   const fetchedData= await(this.fetchData(country))
+   const fetchedData= await(fetchData(country))
    this.setState({data:fetchedData,country:country})
 }
 render()
   {
     console.log('render');
-    console.log(this.state);
     const {data,country}=this.state;
   return (
     <div className={styles.container}>

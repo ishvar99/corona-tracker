@@ -11,16 +11,14 @@ const CountryPicker=({onCountryChangeHandler})=>{
             setFetchedCountries(modifiedData)
         })
         .catch((err)=>console.log(err))
-    },[fetchedCountries])
+    },[])
     return (
-        <div>
            <FormControl className={styles.form}>
                <NativeSelect onChange={(e)=>onCountryChangeHandler(e.target.value)}>
                    <option value='global'>Global</option>
                    {fetchedCountries.map((name,i)=><option key={i} value={name}>{name}</option>)}
                    </NativeSelect>
            </FormControl>
-        </div>
     );
 }
 

@@ -12,7 +12,7 @@ const Charts=({data:{confirmed,recovered,deaths},country})=>{
             });
             setDailyData(modifiedData);
         }).catch((err)=>console.log(err))
-    },[country])
+    },[])
     const LineChart=()=>{
         return dailyData.length>0?(
            
@@ -58,7 +58,7 @@ const Charts=({data:{confirmed,recovered,deaths},country})=>{
     }
     return (
         <div className={styles.container}>
-          { country?<BarChart/>:<LineChart/>}
+          { country!==''?<BarChart/>:<LineChart/>}
 
         </div>
     );
