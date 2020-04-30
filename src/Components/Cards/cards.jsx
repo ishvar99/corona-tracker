@@ -3,10 +3,11 @@ import {Grid,Card,CardContent,Typography} from '@material-ui/core';
 import classnames from 'classnames';
 import CountUp from 'react-countup';
 import styles from './cards.module.css'
+import Loading from '../Loading/loading'
 const Cards=(props)=>{
   const {fetchedData:{confirmed,recovered,deaths,lastUpdate}}=props;
   if(!confirmed){
-    return 'Loading....'
+    return <Loading/>
   }
   return (
          <div className={styles.container}>
